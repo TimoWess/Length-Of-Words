@@ -6,8 +6,8 @@ import qualified Data.Map.Strict as Map
 import Data.Maybe (fromMaybe)
 import System.IO
 
-dict :: Map.Map Char (Double, Double)
-dict =
+letterPositions :: Map.Map Char (Double, Double)
+letterPositions =
     Map.fromList
         [ ('a', (0.3, 1.0))
         , ('b', (4.6, 2.0))
@@ -55,7 +55,7 @@ distance :: Floating a => (a, a) -> (a, a) -> a
 distance (x1, y1) (x2, y2) = sqrt $ (x2 - x1) ^ 2 + (y2 - y1) ^ 2
 
 getPos :: Char -> (Double, Double)
-getPos = fromMaybe (0, 0) . flip Map.lookup dict . toLower
+getPos = fromMaybe (0, 0) . flip Map.lookup letterPositions . toLower
 
 distanceOfWord :: [Char] -> Double
 distanceOfWord (x:y:xs) =
